@@ -3,7 +3,7 @@ import "./App.css";
 import { API_KEY } from "./constants/index.js";
 import axios from "axios";
 import styled from "styled-components";
-
+import theme from "./theme/index.js";
 
 
 
@@ -35,29 +35,55 @@ function App(props) {
 
   return (
     <NasaContainer >
-    <div className="App">
-      <h1>NASA Astronomical Photo Of The Day</h1>
-      <h2>{title}</h2>
+      <NasaHeader>
+      <NasaTitle>NASA Astronomical Photo Of The Day</NasaTitle>
+      <img src="https://www.nasa.gov/sites/all/themes/custom/nasatwo/images/nasa-logo.svg" alt="NASA Logo" />
+      </NasaHeader>
+      <PhotoTitle>Introducing {title}</PhotoTitle>
       <NasaPhoto src={dailyPhoto} alt="NASA's astronomical picture of the day, typically displaying photos of stars, planets, moons, galaxies and so on" />
-      <p>{date}</p>
-      <p>{explanation}</p>
-    </div>
+      <NasaDate>{date}</NasaDate>
+      <NasaExplanation>{explanation}</NasaExplanation>
     </NasaContainer>
   );
 }
+//Styled Components 
 
 const NasaContainer=styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
 text-align: center;
-background-color: #0B3D91;
-color: #FC3D21;
+background-color: ${theme.teritaryColor};
+color: ${theme.secondaryColor}
+`
+const NasaHeader=styled.div`
+display: flex;
+justify-content: center;;
+margin-bottom: 3rem;
+margin-top: .5rem;
+`
+
+
+const NasaTitle=styled.h1`
+font-size: 1.8rem;
+width: 30%;
+`
+
+const PhotoTitle=styled.h2`
+font-size: 1.8rem;
+color: ${theme.secondaryColor}
 `
 
 const NasaPhoto=styled.img`
-height: 20rem;
-width: 20rem;
+width: 80rem;
+`
+
+const NasaDate=styled.p`
+font-size: 1.5rem;
+`
+const NasaExplanation=styled.p`
+width: 50%;
+font-size: 1.5rem;
 `
 
 export default App;
